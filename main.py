@@ -23,9 +23,24 @@ request_duck_duck_go = url.Request(url_de_recherche_duck_duck_go, None, headers)
 with url.urlopen(request_google) as response:
     html = response.read().decode('utf8')
     soup = Bs4(html, 'html.parser')
-    test_a = soup.find_all("a")
-    for link in soup.find_all("a"):
-        print(link.get("href"))
+    test_ol = soup.find_all("ol")
+    print(test_ol)
+    for link in soup.find_all("ol"):
+        print(link.get("div"))
+        # print("")
+    g = soup.find_all("div", {"class": "g"})
+    # soup_g = Bs4(g, 'html.parser')
+    # print(soup_g.prettify())
+    print(g)
+    print(type(g))
+    g_str = str(g)
+    print(g_str)
+    print(type(g_str))
+    g_list = list(g)
+    print(g_list)
+    print(len(g_list))
+    print(g_list[2])
+    print(type(g_list[2]))
 
 print("DuckDuckGo")
 
@@ -34,4 +49,5 @@ with url.urlopen(request_duck_duck_go) as response2:
     soup2 = Bs4(html2, 'html.parser')
     test_a_2 = soup2.find_all('a')
     for links in test_a_2:
-        print(links.get("href"))
+        # print(links.get("href"))
+        pass
