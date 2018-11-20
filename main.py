@@ -23,24 +23,25 @@ request_duck_duck_go = url.Request(url_de_recherche_duck_duck_go, None, headers)
 with url.urlopen(request_google) as response:
     html = response.read().decode('utf8')
     soup = Bs4(html, 'html.parser')
-    test_ol = soup.find_all("ol")
-    print(test_ol)
-    for link in soup.find_all("ol"):
-        print(link.get("div"))
+    # test_ol = soup.find_all("ol")
+    # print(test_ol)
+    # for link in soup.find_all("ol"):
+        # print(link.get("div"))
         # print("")
     g = soup.find_all("div", {"class": "g"})
-    # soup_g = Bs4(g, 'html.parser')
-    # print(soup_g.prettify())
+    h3_results = []
+    links_results = []
     print(g)
     print(type(g))
-    g_str = str(g)
-    print(g_str)
-    print(type(g_str))
     g_list = list(g)
-    print(g_list)
-    print(len(g_list))
-    print(g_list[2])
-    print(type(g_list[2]))
+    print(g_list[1])
+    for div_g in g:
+        h3_results.extend(div_g.find_all("h3", {"class": "LC20lb"}))
+        links_results.extend(div_g.find_all("a", {"href"}))
+        print(h3_results)
+        print(links_results)
+        print(div_g)
+
 
 print("DuckDuckGo")
 
