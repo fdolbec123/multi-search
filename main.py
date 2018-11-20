@@ -23,6 +23,9 @@ request_duck_duck_go = url.Request(url_de_recherche_duck_duck_go, None, headers)
 with url.urlopen(request_google) as response:
     html = response.read().decode('utf8')
     soup = Bs4(html, 'html.parser')
+
+    print("coucou")
+
     # test_ol = soup.find_all("ol")
     # print(test_ol)
     # for link in soup.find_all("ol"):
