@@ -33,12 +33,16 @@ with url.urlopen(request_google) as response:
         h3s = div_g.find_all("h3", {"class": "LC20lb"})
         for h3 in h3s:
             a = h3.text
-            print(a)
             h3_results.append(a)
-        links_results.extend(div_g.find_all("a", {"href"}))
-        print(h3_results)
-        # print(links_results)
-        # print(div_g)
+        hrefs = div_g.find_all("a")
+        c = []
+        for href in hrefs:
+            b = href.get('href')
+            c.append(b)
+        if c[0].startswith("http"):
+            links_results.append(c[0])
+    print(h3_results)
+    print(links_results)
 
 
 print("DuckDuckGo")
