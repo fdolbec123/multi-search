@@ -24,26 +24,21 @@ with url.urlopen(request_google) as response:
     html = response.read().decode('utf8')
     soup = Bs4(html, 'html.parser')
 
-    print("coucou")
-
-    # test_ol = soup.find_all("ol")
-    # print(test_ol)
-    # for link in soup.find_all("ol"):
-        # print(link.get("div"))
-        # print("")
     g = soup.find_all("div", {"class": "g"})
     h3_results = []
     links_results = []
     print(g)
-    print(type(g))
     g_list = list(g)
-    print(g_list[1])
     for div_g in g:
-        h3_results.extend(div_g.find_all("h3", {"class": "LC20lb"}))
+        h3s = div_g.find_all("h3", {"class": "LC20lb"})
+        for h3 in h3s:
+            a = h3.text
+            print(a)
+            h3_results.append(a)
         links_results.extend(div_g.find_all("a", {"href"}))
         print(h3_results)
-        print(links_results)
-        print(div_g)
+        # print(links_results)
+        # print(div_g)
 
 
 print("DuckDuckGo")
