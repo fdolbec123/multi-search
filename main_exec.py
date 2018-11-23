@@ -29,6 +29,7 @@ with url.urlopen(request_google) as response:
     links_results = []
     print(g)
     g_list = list(g)
+    descriptions_list = []
     for div_g in g:
         h3s = div_g.find_all("h3", {"class": "LC20lb"})
         for h3 in h3s:
@@ -41,6 +42,11 @@ with url.urlopen(request_google) as response:
             c.append(b)
         if c[0].startswith("http"):
             links_results.append(c[0])
+        descriptions = div_g.find_all("span", {"class": "st"})
+        for description in descriptions:
+            e = description.text
+            descriptions_list.append(e)
+    print(descriptions_list)
     print(h3_results)
     print(links_results)
 
